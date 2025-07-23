@@ -3,12 +3,10 @@ import {
   createTRPCRouter,
   baseProcedure,
 } from "~/server/trpc/main";
+import { generateRealEstateAdvice } from "~/server/trpc/procedures/generateRealEstateAdvice";
 
 export const appRouter = createTRPCRouter({
-  // when we add a real procedure, remove this placeholder
-  placeholderProcedure: baseProcedure.query(() => {
-    return "placeholder";
-  }),
+  generateRealEstateAdvice,
 });
 
 export type AppRouter = typeof appRouter;

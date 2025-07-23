@@ -5,6 +5,7 @@ const envSchema = z.object({
   BASE_URL: z.string().optional(),
   BASE_URL_OTHER_PORT: z.string().optional(),
   ADMIN_PASSWORD: z.string(),
+  OPENAI_API_KEY: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

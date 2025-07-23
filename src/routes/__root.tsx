@@ -3,6 +3,7 @@ import {
   createRootRoute,
   useRouterState,
 } from "@tanstack/react-router";
+import { Toaster } from "react-hot-toast";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const Route = createRootRoute({
@@ -19,6 +20,7 @@ function RootComponent() {
   return (
     <TRPCReactProvider>
       <Outlet />
+      <Toaster />
     </TRPCReactProvider>
   );
 }
