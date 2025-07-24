@@ -13,6 +13,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: app
     shm_size: 512MB
+    ports:
+      - "5432:5432"
 
   minio:
     image: minio/minio:latest

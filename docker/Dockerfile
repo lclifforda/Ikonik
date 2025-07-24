@@ -11,3 +11,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 RUN npm install -g pnpm
 RUN pnpm set store-dir /app/node_modules/.pnpm-store
+
+# Copy package files and required config files for dependency installation
+COPY package.json pnpm-lock.yaml tsconfig.json tsr.config.json ./
+COPY prisma ./prisma/
+COPY src ./src/
+
+# Install dependencies
+RUN pnpm install
+
+# Copy the rest of the application
+COPY . .

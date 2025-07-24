@@ -5,14 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import toast from "react-hot-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { 
-  ChartBarIcon, 
-  UsersIcon, 
-  DocumentTextIcon, 
+import {
+  ChartBarIcon,
+  UsersIcon,
+  DocumentTextIcon,
   CogIcon,
-  LogoutIcon,
+  ArrowRightOnRectangleIcon,
   EyeIcon,
-  ClockIcon
+  ClockIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 import { useTRPC } from "~/trpc/react";
 import { useAdminStore } from "~/stores/adminStore";
@@ -34,7 +35,7 @@ function AdminPanel() {
 
   // Verify token on mount
   const verifyToken = useQuery(
-    trpc.verifyAdminToken.queryOptions({ token: token || "" }, { 
+    trpc.verifyAdminToken.queryOptions({ token: token || "" }, {
       enabled: !!token,
       retry: false,
     })
@@ -183,7 +184,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
               onClick={handleLogout}
               className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-xl transition-all duration-200"
             >
-              <LogoutIcon className="h-4 w-4 mr-2" />
+              <ArrowRightOnRectangleIcon className="h-4 w-4 mr-2" />
               Logout
             </button>
           </div>
@@ -399,8 +400,8 @@ function InteractionsTab({ data }: { data: any }) {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
-                    interaction.success 
-                      ? 'bg-green-100 text-green-800 border border-green-200' 
+                    interaction.success
+                      ? 'bg-green-100 text-green-800 border border-green-200'
                       : 'bg-red-100 text-red-800 border border-red-200'
                   }`}>
                     {interaction.success ? 'Success' : 'Failed'}
@@ -463,8 +464,8 @@ function QueriesTab({ data }: { data: any }) {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
-                    query.success 
-                      ? 'bg-green-100 text-green-800 border border-green-200' 
+                    query.success
+                      ? 'bg-green-100 text-green-800 border border-green-200'
                       : 'bg-red-100 text-red-800 border border-red-200'
                   }`}>
                     {query.success ? 'Success' : 'Failed'}

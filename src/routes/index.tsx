@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { AcademicCapIcon, TrendingUpIcon, MapIcon } from "@heroicons/react/24/outline";
+import { AcademicCapIcon, ArrowTrendingUpIcon, MapIcon } from "@heroicons/react/24/outline";
 import { useTRPC } from "~/trpc/react";
 import { RealEstateForm } from "~/components/RealEstateForm";
 import { AdviceDisplay } from "~/components/AdviceDisplay";
@@ -64,7 +64,7 @@ function Home() {
             Personalized Spanish Real Estate Advisor
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-3xl">
-            Get comprehensive property investment advice with detailed insights on education options, 
+            Get comprehensive property investment advice with detailed insights on education options,
             property appreciation potential, and local amenities across Spanish regions
           </p>
         </div>
@@ -86,18 +86,18 @@ function Home() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Welcome to Your Comprehensive Investment Advisor</h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  Our AI-powered advisor provides in-depth analysis across all aspects of Spanish real estate investment. 
+                  Our AI-powered advisor provides in-depth analysis across all aspects of Spanish real estate investment.
                   Whether you're an investor, expatriate, digital nomad, or family with children, get personalized insights that go beyond basic property advice.
                 </p>
                 <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
                   <p className="font-semibold text-gray-900 mb-2">Enhanced Capabilities:</p>
                   <p>
-                    Compare multiple Spanish regions with detailed analysis of education systems, 
+                    Compare multiple Spanish regions with detailed analysis of education systems,
                     property appreciation potential, local amenities, market trends, legal considerations, and practical implementation steps.
                   </p>
                 </div>
                 <p>
-                  Select multiple locations to receive side-by-side comparisons, helping you make informed decisions based on 
+                  Select multiple locations to receive side-by-side comparisons, helping you make informed decisions based on
                   comprehensive data about schools, healthcare, transportation, cultural amenities, and investment potential.
                 </p>
               </div>
@@ -109,7 +109,7 @@ function Home() {
                   <div>
                     <p className="font-medium text-amber-800">Important Disclaimer</p>
                     <p className="text-sm text-amber-700 mt-1">
-                      This advice is for informational purposes only and does not constitute formal financial or legal advice. 
+                      This advice is for informational purposes only and does not constitute formal financial or legal advice.
                       Always consult with qualified professionals before making investment decisions.
                     </p>
                   </div>
@@ -129,8 +129,8 @@ function Home() {
             </div>
             <h2 className="text-3xl font-bold text-gray-900">Tell Us About Your Profile and Goals</h2>
           </div>
-          <RealEstateForm 
-            onSubmit={handleFormSubmit} 
+          <RealEstateForm
+            onSubmit={handleFormSubmit}
             isLoading={generateAdviceMutation.isPending}
           />
         </div>
@@ -151,11 +151,11 @@ function Home() {
               Comprehensive insights on school systems, healthcare, transportation, cultural amenities, and lifestyle factors across different Spanish regions.
             </p>
           </div>
-          
+
           <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
             <div className="flex items-center space-x-4 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <TrendingUpIcon className="w-6 h-6 text-white" />
+                <ArrowTrendingUpIcon className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Property Appreciation Intelligence</h3>
             </div>
@@ -163,7 +163,7 @@ function Home() {
               Detailed market analysis including growth drivers, historical trends, infrastructure development impact, and future appreciation potential for informed investment decisions.
             </p>
           </div>
-          
+
           <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
             <div className="flex items-center space-x-4 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
