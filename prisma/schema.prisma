@@ -10,10 +10,79 @@ datasource db {
   url      = "postgresql://postgres:postgres@postgres/app" // hardcoded because it's an internal docker connection
 }
 
-// Prisma doesn't allow having a schema with no models
-// remove this when you add real models
-model ExampleModel {
-  id Int @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  someString String
+model UserInteraction {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  
+  // User session/identification
+  sessionId String?
+  userAgent String?
+  ipAddress String?
+  
+  // Interaction details
+  interactionType String // e.g., "form_submission", "advice_generation", "page_view"
+  page            String? // which page/route
+  data            Json?   // flexible field for storing interaction-specific data
+  
+  // Real estate form specific fields
+  propertyType    String?
+  budget          String?
+  location        String?
+  bedrooms        Int?
+  bathrooms       Int?
+  
+  // Response/outcome
+  adviceGenerated Boolean @default(false)
+  responseTime    Int?    // milliseconds
+  success         Boolean @default(true)
+  errorMessage    String?
+}
+
+model QueryLog {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  
+  // Query details
+  queryType    String // e.g., "real_estate_advice", "property_search"
+  queryText    String?
+  parameters   Json?   // store query parameters as JSON
+  
+  // User context
+  sessionId    String?
+  userAgent    String?
+  
+  // Response details
+  responseTime Int?    // milliseconds
+  success      Boolean @default(true)
+  errorType    String?
+  
+  // Categorization for insights
+  category     String?
+  tags         String[] // array of tags for grouping similar queries
+}
+
+model UserPreference {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // User identification
+  sessionId String @unique
+  
+  // Preference data
+  preferredPropertyTypes String[] // array of preferred property types
+  budgetRange           String?
+  preferredLocations    String[] // array of preferred locations
+  bedroomPreference     Int?
+  bathroomPreference    Int?
+  
+  // Behavioral patterns
+  visitCount            Int      @default(1)
+  lastVisit            DateTime @default(now())
+  averageSessionTime    Int?     // seconds
+  mostUsedFeatures      String[] // array of feature names
+  
+  // Preferences for advice
+  adviceStyle          String?  // e.g., "detailed", "concise", "bullet_points"
+  preferredAdviceTopics String[] // e.g., ["financing", "location", "investment"]
 }
