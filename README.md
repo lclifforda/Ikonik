@@ -207,7 +207,45 @@ NODE_ENV=production pnpm start
 | `DATABASE_URL` | PostgreSQL connection string | Yes |
 | `OPENAI_API_KEY` | OpenAI API key for AI features | Yes |
 
+## AI Service Information
+
+This project uses **OpenAI GPT-4o** model through the Vercel AI SDK (`@ai-sdk/openai`) to provide intelligent real estate investment advice.
+
+### OpenAI Setup
+
+1. **Get an API Key**: Visit https://platform.openai.com/api-keys to create an OpenAI account and generate an API key
+2. **Add to .env**: Replace the placeholder in your `.env` file:
+   ```
+   OPENAI_API_KEY=sk-...your_actual_api_key_here
+   ```
+3. **Verify**: The key should start with `sk-` and be kept secret
+
 ## Troubleshooting
+
+### Common Setup Issues
+
+1. **"OPENAI_API_KEY is required" error**
+   - Make sure you've replaced `your_openai_api_key_here` with a real OpenAI API key
+   - Check that your `.env` file is in the root directory
+   - Restart the development server after updating `.env`
+
+2. **Missing dependencies**
+   ```bash
+   # Install all dependencies
+   pnpm install
+   
+   # If you see peer dependency warnings
+   pnpm install --force
+   ```
+
+3. **"Cannot find module" errors**
+   ```bash
+   # Generate Prisma client
+   pnpm prisma generate
+   
+   # Generate TanStack Router types
+   pnpm tsr generate
+   ```
 
 ### Database connection issues
 
@@ -219,6 +257,9 @@ docker ps
 
 # View database logs
 docker-compose logs postgres
+
+# If using local PostgreSQL, verify it's running
+psql -U postgres -h localhost -p 5432
 ```
 
 ### Port conflicts
@@ -233,6 +274,21 @@ pnpm prisma generate
 
 # Reset database (WARNING: This will delete all data)
 pnpm prisma db push --force-reset
+
+# View database in Prisma Studio
+pnpm db:studio
+```
+
+### Docker issues
+
+```bash
+# Stop all containers and restart
+./scripts/stop
+docker-compose -f docker/compose.yaml down
+docker-compose -f docker/compose.yaml up -d
+
+# Check container logs
+docker-compose -f docker/compose.yaml logs
 ```
 
 ## Contributing
